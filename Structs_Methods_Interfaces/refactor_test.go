@@ -1,115 +1,106 @@
 package main
 
-// func Perimeter(width, height float64) float64 {
+// // 1
+
+// func Perimeter(width float64, height float64) float64 {
 // 	return 0
 // }
 
 // func TestPerimeter(t *testing.T) {
 // 	got := Perimeter(10.0, 10.0)
 // 	want := 40.0
+
 // 	if got != want {
 // 		t.Errorf("got %.2f want %.2f", got, want)
 // 	}
 // }
 
+// // 2
 // func Perimeter(width float64, height float64) float64 {
 // 	return 2 * (width + height)
-// }
-
-// func Area(width float64, height float64) float64 {
-// 	return width * height
 // }
 
 // func TestPerimeter(t *testing.T) {
 // 	got := Perimeter(10.0, 10.0)
 // 	want := 40.0
+
 // 	if got != want {
 // 		t.Errorf("got %.2f want %.2f", got, want)
 // 	}
 // }
 
-// func TestArea(t *testing.T) {
-// 	got := Area(10.0, 10.0)
-// 	want := 100.0
+// // 3 - Refactor
+// type Rectangle struct {
+// 	Width  float64
+// 	Height float64
+// }
+
+// func Perimeter(r Rectangle) float64 {
+// 	return 2 * (r.Width + r.Height)
+// }
+
+// func TestPerimeter(t *testing.T) {
+// 	r := Rectangle{10.0, 10.0}
+// 	got := Perimeter(r)
+// 	want := 40.0
+
 // 	if got != want {
 // 		t.Errorf("got %.2f want %.2f", got, want)
 // 	}
 // }
+
+// 4 - New type
+
+// type Circle struct {
+// 	Radius float64
+// }
+
+// func (c Circle) Perimeter() float64 {
+// 	return 3.14 * c.Radius * c.Radius
+// }
+
+// func TestPerimeter(t *testing.T) {
+// 	t.Run("I am testing fir Circle ", func(t *testing.T) {
+// 		c := Circle{10}
+// 		got := c.Perimeter()
+// 		want := 314.0
+
+// 		if got != want {
+// 			t.Errorf("got %g want %g", got, want)
+// 		}
+// 	})
+// }
+
+// //5 Methods
 
 // type Rectangle struct {
 // 	Width  float64
 // 	Height float64
 // }
 
-// func Perimeter(rectangle Rectangle) float64 {
-// 	return 2 * (rectangle.Height + rectangle.Width)
+// func (r Rectangle) Area() float64 {
+// 	return r.Width * r.Height
 // }
 
-// func Area(rectangle Rectangle) float64 {
-// 	return rectangle.Height * rectangle.Width
+// type Circle struct {
+// 	Radius float64
 // }
 
-// func TestPerimeter(t *testing.T) {
-// 	rectangle := Rectangle{10.0, 10.0}
-// 	got := Perimeter(rectangle)
-// 	want := 40.0
-
-// 	if got != want {
-// 		t.Errorf("got %.2f want %.2f", got, want)
-// 	}
-
+// func (c Circle) Area() float64 {
+// 	return math.Pi * c.Radius * c.Radius
 // }
 
-// func TestArea(t *testing.T) {
-// 	rectangle := Rectangle{12.0, 6.0}
-// 	got := Area(rectangle)
-// 	want := 72.0
+// // 6 RE-FACTOR - Interface
 
-// 	if got != want {
-// 		t.Errorf("got %.2f want %.2f", got, want)
-// 	}
-
+// type Shape interface {
+// 	Area() float64
 // }
 
-// func TestArea(t *testing.T) {
-
-// 	t.Run("rectangles", func(t *testing.T) {
-// 		rectangle := Rectangle{12, 6}
-// 		got := Area(rectangle)
-// 		want := 72.0
-
-// 		if got != want {
-// 			t.Errorf("got %g want %g", got, want)
-// 		}
-// 	})
-
-// 	t.Run("circles", func(t *testing.T) {
-// 		circle := Circle{10}
-// 		got := Area(circle)
-// 		want := 314.1592653589793
-
-// 		if got != want {
-// 			t.Errorf("got %g want %g", got, want)
-// 		}
-// 	})
-
+// type Triangle struct {
+// 	Base   float64
+// 	Height float64
 // }
 
-
-type Rectangle struct {
-	Width  float64
-	Height float64
-}
-
-func (r Rectangle) Area() float64 {
-	return 0
-}
-
-type Circle struct {
-	Radius float64
-}
-
-func (c Circle) Area() float64 {
-	return 0
-}
-
+// func (t Triangle) Area() float64 {
+// 	return (t.Base * t.Height) * 0.5
+// }
